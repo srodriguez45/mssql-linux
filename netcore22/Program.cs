@@ -19,6 +19,10 @@ namespace netcore22
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .ConfigureAppConfiguration(c =>
+            {
+                c.AddJsonFile("config/appsettings.json", optional: true, reloadOnChange: true);
+            })
+            .UseStartup<Startup>();
     }
 }
